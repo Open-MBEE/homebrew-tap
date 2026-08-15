@@ -1,0 +1,65 @@
+name: Update systemica formula
+
+on:
+  schedule:
+    - cron: '17 * * * *'      # hourly; a release is picked up within the hour
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Systemica release tag (default: latest release)'
+        required: false
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Resolve the release tag
+        id: tag
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          INPUT_TAG: ${{ inputs.tag }}
+        run: |
+          set -euo pipefail
+          TAG="$INPUT_TAG"
+          if [ -z "$TAG" ]; then
+            TAG=$(gh release view --repo Open-MBEE/Systemica --json tagName -q .tagName)
+          fi
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "Resolved $TAG"
+
+      - name: Render the formula from the release checksums
+        env:
+          TAG: ${{ steps.tag.outputs.tag }}
+        run: |
+          set -euo pipefail
+          # The render script and the formula template live in the Systemica repo.
+          # Fetch both at the released tag so the rendering matches that release.
+          curl -fsSL -o /tmp/render.sh \
+            "https://raw.githubusercontent.com/Open-MBEE/Systemica/${TAG}/scripts/render-homebrew-formula.sh"
+          mkdir -p /tmp/src/scripts /tmp/src/packaging/homebrew/Formula
+          mv /tmp/render.sh /tmp/src/scripts/render-homebrew-formula.sh
+          curl -fsSL -o /tmp/src/packaging/homebrew/Formula/systemica.rb \
+            "https://raw.githubusercontent.com/Open-MBEE/Systemica/${TAG}/packaging/homebrew/Formula/systemica.rb"
+          chmod +x /tmp/src/scripts/render-homebrew-formula.sh
+          /tmp/src/scripts/render-homebrew-formula.sh "$TAG" > Formula/systemica.rb
+          head -20 Formula/systemica.rb
+
+      - name: Commit if the formula changed
+        env:
+          TAG: ${{ steps.tag.outputs.tag }}
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- Formula/systemica.rb; then
+            echo "Formula already at $TAG; nothing to do."
+            exit 0
+          fi
+          git config user.name  'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add Formula/systemica.rb
+          git commit -m "systemica ${TAG}"
+          git push

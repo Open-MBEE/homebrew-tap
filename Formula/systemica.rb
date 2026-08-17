@@ -5,23 +5,23 @@ class Systemica < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/Open-MBEE/Systemica/releases/download/v0.0.8/systemica-darwin-arm64.tar.gz"
-      sha256 "d9d446334866306eb7bf7806ab43618958b856c4515a20fb14c94dad4fd0b35a"
+      url "https://github.com/Open-MBEE/Systemica/releases/download/v0.0.9/systemica-darwin-arm64.tar.gz"
+      sha256 "671e652235e1ff54d47f3432c6d93035b45495d4653fcca4852880ebe311cb79"
     end
     on_intel do
-      url "https://github.com/Open-MBEE/Systemica/releases/download/v0.0.8/systemica-darwin-amd64.tar.gz"
-      sha256 "5bd2adfe545a0ad40224aefeeb2c1408ae4bd614b29813911e5605d5fb5edc1c"
+      url "https://github.com/Open-MBEE/Systemica/releases/download/v0.0.9/systemica-darwin-amd64.tar.gz"
+      sha256 "47453dd72f3ac2cf47e4c9119992ab08c8ac8d27f57d239009903bca91f69b4e"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/Open-MBEE/Systemica/releases/download/v0.0.8/systemica-linux-arm64.tar.gz"
-      sha256 "9a2fddbbc11b2db069ef8fcbd07a56c0ca25a05656d1155124abf604d5ed4067"
+      url "https://github.com/Open-MBEE/Systemica/releases/download/v0.0.9/systemica-linux-arm64.tar.gz"
+      sha256 "8e1a1550e77f19d9399d2e4732c9d4379a2097641ed53f43373c01f62fab0f63"
     end
     on_intel do
-      url "https://github.com/Open-MBEE/Systemica/releases/download/v0.0.8/systemica-linux-amd64.tar.gz"
-      sha256 "de343759e42c51b2bba66e6a0fb34d663f62e076d77827adace7d431d87e50a1"
+      url "https://github.com/Open-MBEE/Systemica/releases/download/v0.0.9/systemica-linux-amd64.tar.gz"
+      sha256 "875bb6b678711cb631257ddce1b5cb8e0af58220f6d8c11c8838dc54a2e7574b"
     end
   end
 

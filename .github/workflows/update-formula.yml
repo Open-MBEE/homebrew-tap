@@ -37,7 +37,7 @@ jobs:
           TAG: ${{ steps.tag.outputs.tag }}
         run: |
           set -euo pipefail
-          # The render script and the formula template live in the Systemica repo.
+          # The render script and the formula template live in the OpenSysML repo.
           # Fetch both at the released tag so the rendering matches that release.
           curl -fsSL -o /tmp/render.sh \
             "https://raw.githubusercontent.com/Open-MBEE/OpenSysML/${TAG}/scripts/render-homebrew-formula.sh"
@@ -47,7 +47,7 @@ jobs:
             "https://raw.githubusercontent.com/Open-MBEE/OpenSysML/${TAG}/packaging/homebrew/Formula/opensysml.rb"
           chmod +x /tmp/src/scripts/render-homebrew-formula.sh
           /tmp/src/scripts/render-homebrew-formula.sh "$TAG" > Formula/opensysml.rb
-          head -20 Formula/systemica.rb
+          head -20 Formula/opensysml.rb
 
       - name: Commit if the formula changed
         env:

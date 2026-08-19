@@ -1,4 +1,4 @@
-name: Update systemica formula
+name: Update opensysml formula
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Systemica release tag (default: latest release)'
+        description: 'OpenSysML release tag (default: latest release)'
         required: false
 
 permissions:
@@ -27,7 +27,7 @@ jobs:
           set -euo pipefail
           TAG="$INPUT_TAG"
           if [ -z "$TAG" ]; then
-            TAG=$(gh release view --repo Open-MBEE/Systemica --json tagName -q .tagName)
+            TAG=$(gh release view --repo Open-MBEE/OpenSysML --json tagName -q .tagName)
           fi
           echo "tag=$TAG" >> "$GITHUB_OUTPUT"
           echo "Resolved $TAG"
@@ -40,13 +40,13 @@ jobs:
           # The render script and the formula template live in the Systemica repo.
           # Fetch both at the released tag so the rendering matches that release.
           curl -fsSL -o /tmp/render.sh \
-            "https://raw.githubusercontent.com/Open-MBEE/Systemica/${TAG}/scripts/render-homebrew-formula.sh"
+            "https://raw.githubusercontent.com/Open-MBEE/OpenSysML/${TAG}/scripts/render-homebrew-formula.sh"
           mkdir -p /tmp/src/scripts /tmp/src/packaging/homebrew/Formula
           mv /tmp/render.sh /tmp/src/scripts/render-homebrew-formula.sh
-          curl -fsSL -o /tmp/src/packaging/homebrew/Formula/systemica.rb \
-            "https://raw.githubusercontent.com/Open-MBEE/Systemica/${TAG}/packaging/homebrew/Formula/systemica.rb"
+          curl -fsSL -o /tmp/src/packaging/homebrew/Formula/opensysml.rb \
+            "https://raw.githubusercontent.com/Open-MBEE/OpenSysML/${TAG}/packaging/homebrew/Formula/opensysml.rb"
           chmod +x /tmp/src/scripts/render-homebrew-formula.sh
-          /tmp/src/scripts/render-homebrew-formula.sh "$TAG" > Formula/systemica.rb
+          /tmp/src/scripts/render-homebrew-formula.sh "$TAG" > Formula/opensysml.rb
           head -20 Formula/systemica.rb
 
       - name: Commit if the formula changed
@@ -54,12 +54,12 @@ jobs:
           TAG: ${{ steps.tag.outputs.tag }}
         run: |
           set -euo pipefail
-          if git diff --quiet -- Formula/systemica.rb; then
+          if git diff --quiet -- Formula/opensysml.rb; then
             echo "Formula already at $TAG; nothing to do."
             exit 0
           fi
           git config user.name  'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git add Formula/systemica.rb
-          git commit -m "systemica ${TAG}"
+          git add Formula/opensysml.rb
+          git commit -m "opensysml ${TAG}"
           git push

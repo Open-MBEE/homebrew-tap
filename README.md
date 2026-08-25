@@ -7,7 +7,7 @@ brew tap Open-MBEE/tap
 brew install opensysml
 ```
 
-`systemica` installs the [OpenSysML](https://github.com/Open-MBEE/OpenSysML) SysML v2
+`opensysml` installs the [OpenSysML](https://github.com/Open-MBEE/OpenSysML) SysML v2
 toolchain: the `sysml` REPL and the `sysml-lsp` language server.
 
 ## Maintenance

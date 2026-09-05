@@ -9,28 +9,29 @@ class Opensysml < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/Open-MBEE/OpenSysML/releases/download/v0.4.3/opensysml-darwin-arm64.tar.gz"
-      sha256 "0927e2e7bbf86c6b6e546d275273c529808f98b6da9c525155e8a80bba4623bf"
+      url "https://github.com/Open-MBEE/OpenSysML/releases/download/v0.5.0/opensysml-darwin-arm64.tar.gz"
+      sha256 "a23a92fc4d5761aa6826523c30735bd1b7e877095d7a743b67dc359a15e501fc"
     end
     on_intel do
-      url "https://github.com/Open-MBEE/OpenSysML/releases/download/v0.4.3/opensysml-darwin-amd64.tar.gz"
-      sha256 "95bfa593d773a5fabe99402dec8e860163d0673299ef8b038dd7c0d2e6f97350"
+      url "https://github.com/Open-MBEE/OpenSysML/releases/download/v0.5.0/opensysml-darwin-amd64.tar.gz"
+      sha256 "ef32ad981d91a756426020c4e375bd13e8826ccfacf3cec0f91ea1be793fffe6"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/Open-MBEE/OpenSysML/releases/download/v0.4.3/opensysml-linux-arm64.tar.gz"
-      sha256 "ceba7303c9ffd391b2849b4ae4e15ec52d9ccb951e81b8dc47b7359ee07cdc96"
+      url "https://github.com/Open-MBEE/OpenSysML/releases/download/v0.5.0/opensysml-linux-arm64.tar.gz"
+      sha256 "7f972352a8b8e4a524068d567f06cd80ef1ec5fbc12c5916292c5190203ba61a"
     end
     on_intel do
-      url "https://github.com/Open-MBEE/OpenSysML/releases/download/v0.4.3/opensysml-linux-amd64.tar.gz"
-      sha256 "661df51718d8506fff925d7b89d0cc119c5c1247f389f9bd9b87d6443ac4553d"
+      url "https://github.com/Open-MBEE/OpenSysML/releases/download/v0.5.0/opensysml-linux-amd64.tar.gz"
+      sha256 "899ce5408bd4e3df1bac82dbe2f1d203c2606a1fb45f5e4377e3f4c7bc547452"
     end
   end
 
   def install
     bin.install "sysml", "sysml-lsp"
+    man1.install Dir["share/man/man1/*.1"]
   end
 
   test do
@@ -38,6 +39,9 @@ class Opensysml < Formula
     # is that tag without the leading "v", scanned from the URL.
     assert_match version.to_s, shell_output("#{bin}/sysml --version")
     assert_match version.to_s, shell_output("#{bin}/sysml-lsp --version")
+
+    # The manual pages ship in the bundle archive, so `man sysml` works.
+    assert_path_exists man1/"sysml.1"
 
     # Evaluate an expression non-interactively: exercises lexer, parser, and runtime.
     assert_match "= 8", shell_output("#{bin}/sysml -e '5 + 3'")

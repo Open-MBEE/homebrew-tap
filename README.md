@@ -12,15 +12,18 @@ toolchain: the `sysml` REPL and the `sysml-lsp` language server.
 
 ## Maintenance
 
-`Formula/opensysml.rb` is generated, not hand-edited. Per release, render it from the
-release's `SHA256SUMS.txt` in a clone of Open-MBEE/OpenSysML and commit the result here:
+`Formula/opensysml.rb` is generated, and nothing here bumps it by hand. The
+[`Update opensysml formula`](.github/workflows/update-formula.yml) workflow runs hourly: it
+resolves the latest Open-MBEE/OpenSysML release, fetches `scripts/render-homebrew-formula.sh`
+and `packaging/homebrew/Formula/opensysml.rb` at that tag, renders the formula from the
+release's `SHA256SUMS.txt`, and commits it as `opensysml <tag>` if it changed. A new release is
+therefore tapped within the hour; `workflow_dispatch` re-runs it on demand, optionally against
+a specific tag.
 
-```bash
-# in Open-MBEE/OpenSysML
-./scripts/render-homebrew-formula.sh vX.Y.Z > /path/to/homebrew-tap/Formula/opensysml.rb
-```
-
-Then verify before pushing:
+Because the template and the render script are read from the release tag, a formula defect is
+fixed in Open-MBEE/OpenSysML rather than here — an edit to `Formula/opensysml.rb` in this
+repository is overwritten by the next scheduled run. Verify a change through a throwaway local
+tap before the tag is cut:
 
 ```bash
 brew install --verbose Open-MBEE/tap/opensysml

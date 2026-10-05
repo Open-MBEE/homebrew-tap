@@ -9,23 +9,23 @@ class Opensysml < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/Open-MBEE/OpenSysML/releases/download/v0.9.1/opensysml-darwin-arm64.tar.gz"
-      sha256 "82ae3cc3aa3ffbb8bd8724436acd0d86bf30d5389879126e7d0e7c6c5f2ffe30"
+      url "https://github.com/Open-MBEE/OpenSysML/releases/download/v0.9.2/opensysml-darwin-arm64.tar.gz"
+      sha256 "824fb518517da0f2ef2722305a252f7f54869103c8b3a97d76934b1c97bec0ec"
     end
     on_intel do
-      url "https://github.com/Open-MBEE/OpenSysML/releases/download/v0.9.1/opensysml-darwin-amd64.tar.gz"
-      sha256 "10a6b8ed7ab3d699172f3eb519ee087b31e0fe6812120e131a36799346fe25d8"
+      url "https://github.com/Open-MBEE/OpenSysML/releases/download/v0.9.2/opensysml-darwin-amd64.tar.gz"
+      sha256 "1faf975b9883ca649afb830357c667d567547d69705ad85adf9fae824bc31f3e"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/Open-MBEE/OpenSysML/releases/download/v0.9.1/opensysml-linux-arm64.tar.gz"
-      sha256 "18756ea8f0e3dc2883cb130e879f70a191a86ef138aa58428830f89b823bf7b9"
+      url "https://github.com/Open-MBEE/OpenSysML/releases/download/v0.9.2/opensysml-linux-arm64.tar.gz"
+      sha256 "f2e24f955b3d19a2bba2eef7404c0080ae72269d3feb412537264c15ab67b261"
     end
     on_intel do
-      url "https://github.com/Open-MBEE/OpenSysML/releases/download/v0.9.1/opensysml-linux-amd64.tar.gz"
-      sha256 "5e638de489b31d40e1f7b50fae585e579b18146a78f0948410d6cf1674357bf9"
+      url "https://github.com/Open-MBEE/OpenSysML/releases/download/v0.9.2/opensysml-linux-amd64.tar.gz"
+      sha256 "ebd9d99039009156a85f98a49d0713d8ed427e2c8e8d38c5619acfbee2458544"
     end
   end
 

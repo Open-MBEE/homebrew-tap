@@ -9,38 +9,38 @@ class Opensysml < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/Open-MBEE/OpenSysML/releases/download/v0.12.0/opensysml-darwin-arm64.tar.gz"
-      sha256 "d73c030d490772de4b88d3b74dd7fd375bc06f6d0e548f2b3e513cb2849b6338"
+      url "https://github.com/Open-MBEE/OpenSysML/releases/download/v0.12.1/opensysml-darwin-arm64.tar.gz"
+      sha256 "0f16d282ec50bfda916e74ef102e5b257bf2c9964f6e44df9db495db4fc96210"
       resource "sysml-mcp" do
-        url "https://github.com/Open-MBEE/OpenSysML/releases/download/v0.12.0/sysml-mcp-darwin-arm64.tar.gz"
-        sha256 "4d0b1563a450f182bff4b554be3359ac65dd4757236b00c88ae287782c046086"
+        url "https://github.com/Open-MBEE/OpenSysML/releases/download/v0.12.1/sysml-mcp-darwin-arm64.tar.gz"
+        sha256 "3735e126dc4a38c6d95d0f5ee9d7402acc2c6e7df96d7ec1fa752a9d51070ed2"
       end
     end
     on_intel do
-      url "https://github.com/Open-MBEE/OpenSysML/releases/download/v0.12.0/opensysml-darwin-amd64.tar.gz"
-      sha256 "64ef596fe10069fd6e6eed645b050d62d342a43b7d8650229d80114370d9d62e"
+      url "https://github.com/Open-MBEE/OpenSysML/releases/download/v0.12.1/opensysml-darwin-amd64.tar.gz"
+      sha256 "ec9a94bacb0da8fe8dea4936d8af8fabc053b7835d190982dccf0984a2610986"
       resource "sysml-mcp" do
-        url "https://github.com/Open-MBEE/OpenSysML/releases/download/v0.12.0/sysml-mcp-darwin-amd64.tar.gz"
-        sha256 "da5aca1942f4c3a5ea7ec729f67d58c1d39d43dcfb53b0b4db96ccb39d06079f"
+        url "https://github.com/Open-MBEE/OpenSysML/releases/download/v0.12.1/sysml-mcp-darwin-amd64.tar.gz"
+        sha256 "a667a9ae8d555954b950627011f4549f8e5aba63f9e24dc1be34797fffa1600b"
       end
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/Open-MBEE/OpenSysML/releases/download/v0.12.0/opensysml-linux-arm64.tar.gz"
-      sha256 "34444081bd0789819ff7a0a355400ae5a2d9826d3aa4c0e2d477250c3c6ba04c"
+      url "https://github.com/Open-MBEE/OpenSysML/releases/download/v0.12.1/opensysml-linux-arm64.tar.gz"
+      sha256 "49bc21ae340b1a65f35613b9f63bc10118b4e0392abace9b26924c625b1ca647"
       resource "sysml-mcp" do
-        url "https://github.com/Open-MBEE/OpenSysML/releases/download/v0.12.0/sysml-mcp-linux-arm64.tar.gz"
-        sha256 "420a87208dfdc28ded5ccc5c6e8a607bddadab743c068d8ec34700d4faac80af"
+        url "https://github.com/Open-MBEE/OpenSysML/releases/download/v0.12.1/sysml-mcp-linux-arm64.tar.gz"
+        sha256 "1b7b43e00734a41216543df43ad4e6244543c3209ed7d40344433934800b76ed"
       end
     end
     on_intel do
-      url "https://github.com/Open-MBEE/OpenSysML/releases/download/v0.12.0/opensysml-linux-amd64.tar.gz"
-      sha256 "98f60227b32485b8d209e58f0a15951e68ba27177d9f2374e97c6e8fdcde645b"
+      url "https://github.com/Open-MBEE/OpenSysML/releases/download/v0.12.1/opensysml-linux-amd64.tar.gz"
+      sha256 "a091d9a110c4757357b093f2103f5a0fd04c5369490eda75b74cae8c466b5b5f"
       resource "sysml-mcp" do
-        url "https://github.com/Open-MBEE/OpenSysML/releases/download/v0.12.0/sysml-mcp-linux-amd64.tar.gz"
-        sha256 "465dbec23ec32827dd4e47c312e3f63b700d1b63a5fbbd928fde4d5b0c759739"
+        url "https://github.com/Open-MBEE/OpenSysML/releases/download/v0.12.1/sysml-mcp-linux-amd64.tar.gz"
+        sha256 "1118f37207b3fc5a67ad8bcd76c46e6ff349ec2d64d2df5412dc067677e169f8"
       end
     end
   end
